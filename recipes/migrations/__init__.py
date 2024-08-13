@@ -1,0 +1,1 @@
+#Referente ás migracoes da bases de dados, ao ORM do DJANGO

@@ -45,7 +45,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [ #Django da prioridade ao que está aqui. CUIDADO PARA NAO GERAR COLISAO DE NOMES
             BASE_DIR / 'base_templates',
-            BASE_DIR / 'recipes' / 'templates_temp',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

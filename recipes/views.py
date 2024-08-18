@@ -1,5 +1,6 @@
 from django.shortcuts import render  #lë um arquivo e renderiza ele
 
+
 # Create your views here.
 
 def home(request):

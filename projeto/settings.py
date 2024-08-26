@@ -108,6 +108,11 @@ STATIC_ROOT = BASE_DIR / 'static'  # Caminho da pasta aonde o django vai salvar 
 # aplicacao# # Usa para rodar o 'python manage.py collectstatic'
 # Isso mostra a importancia do name-spacing, senao vai colidir nomes dos arquivos css!!!!!
 
+
+# A pasta de média aonde ficarao os arquivos fic
+MEDIA_URL = '/media/'  #  adiciona um caminho para servir arquivos de mídia carregados pelos usuários
+MEDIA_ROOT = BASE_DIR / 'media'  # Pasta aonde vai salvar os files de média de toda a aplicacao
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

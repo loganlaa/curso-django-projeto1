@@ -11,7 +11,8 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=65)
 
-    def __str__(self):  # Método chamado quando você tenta chamar o model como uma string, já retorna o nome dela automático. Aí não precisa ficar aparecendo object 1
+    def __str__(self):  # Método chamado quando você tenta chamar o model como uma string, já retorna o nome dela
+        # automático. Aí não precisa ficar aparecendo object 1
         return self.name
 
 
@@ -38,6 +39,7 @@ class Recipe(models.Model):
         User, on_delete=models.SET_NULL, null=True  # Se alguem apagar a categoria, seta null para nao dar
         # inconssistencia na DB
     )
+
     def __str__(self):
         return self.title
 

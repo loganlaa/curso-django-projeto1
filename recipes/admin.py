@@ -16,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 # Passa o model que a gente criou (Category) e a CategoryAdmin criada agora
 # Ele vai registrar na área administrativa do site o Category através de CategoryAdmin
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Category, CategoryAdmin)  # PREFIRO ESSA
 
 
 @admin.register(Recipe)

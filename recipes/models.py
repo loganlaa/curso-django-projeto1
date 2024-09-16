@@ -1,3 +1,5 @@
+from email.policy import default
+
 from django.contrib.auth.models import User  # Importando uma tabela de usuários
 from django.db import models
 
@@ -29,10 +31,11 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # gera uma data no momento da criacao e nao mexe nela
     updated_ate = models.DateTimeField(auto_now=True)  # Gera a data apenas quando atualiza
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/')  # Salva a imagem em uma pasta por data (a foto
-    # dá no media)
+    cover = models.ImageField(
+        upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='')  # Salva a imagem numa pasta por data (a foto
+    # dá no media)  # Blank=True -→ Permite que o campo esteja em branco (nem chega a checar na base de dados, checa tudo no form mesmo)
     category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True  # Se alguem apagar a categoria, seta null para nao dar
+        Category, on_delete=models.SET_NULL, null=True, blank=True, default=None  # Se alguem apagar a categoria, seta null para nao dar
         # inconssistencia na DB
     )
     author = models.ForeignKey(

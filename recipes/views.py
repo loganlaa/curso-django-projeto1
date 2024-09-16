@@ -6,7 +6,9 @@ from recipes.models import Recipe
 # Create your views here.
 
 def home(request):
-    recipes = Recipe.objects.all().order_by('-id')
+    recipes = Recipe.objects.filter(
+        is_published=True
+    ).order_by('-id')  # Cria a var recipes que vai receber uma receita armazenada na model, ao invés de gerar aleatório
     return render(request, 'recipes/pages/home.html', status=200,
                   context={  # context é importante para passar variáveis aplicadas somente ä pagina
                       'recipes': recipes
@@ -15,11 +17,12 @@ def home(request):
 
 def category(request, category_id):
     recipes = Recipe.objects.filter(
-        category__id=category_id
+        category__id=category_id,
+        is_published=True
         # Como acesso id da categoria sendo que id é uma Chave Secundária dentro da tabela Recipe? USA dois
         # underlines ( __id) e passa o id Queria pegar um campo da category que é uma forein key dentro de recipe
     ).order_by('-id')
-    return render(request, 'recipes/pages/home.html', status=200, context={  # context é importante para passar
+    return render(request, 'recipes/pages/category.html', status=200, context={  # context é importante para passar
         # variáveis aplicadas somente ä pagina
         'recipes': recipes
     })

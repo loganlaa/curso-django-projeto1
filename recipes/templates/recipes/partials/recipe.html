@@ -73,12 +73,15 @@
         </footer>
     {% endif %}
 
-    {% if is_detail_page %}
-    
-    <div class="preparation-steps">
-        {{ recipe.preparation_steps | linebreaksbr }}
-    </div>
-    
+    {% if is_detail_page is True %}
+        <div class="preparation-steps">
+            {% if recipe.preparation_step_is_html is True %}
+                {{ recipe.preparation_steps|safe }}  <!-- Indica que o HTML que tem naquele texto é seguro, entao pode renderizar, já que é perigoso receber HTML do usuário-->
+            {% else %}
+                {{ recipe.preparation_steps|linebreaksbr }}
+            {% endif %}
+        </div>
     {% endif %}
+
 
 </div>

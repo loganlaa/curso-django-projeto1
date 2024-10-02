@@ -19,8 +19,7 @@ def category(request, category_id):
     recipes = get_list_or_404(Recipe.objects.filter(
         category__id=category_id,
         is_published=True,
-        # Como acesso id da categoria sendo que id é uma Chave Secundária dentro da tabela Recipe? USA dois
-        # underlines ( __id) e passa o id Queria pegar um campo da category que é uma forein key dentro de recipe
+        # Como acesso id da categoria sendo que id é uma Chave Secundária dentro da tabela Recipe? USA dois underlines ( __id) e passa o id Queria pegar um campo da category que é uma forein key dentro de recipe
     ).order_by('-id'))
 
     return render(request, 'recipes/pages/category.html', context={  # context é importante para passar
@@ -31,7 +30,16 @@ def category(request, category_id):
 
 
 def recipe(request, id):
+
+    recipe = Recipe.objects.filter(
+        pk=id,  # pk é a primary key de recipe e o id é gerado automaticamente no django
+        is_published=True,
+        # Como acesso id da categoria sendo que id é uma Chave Secundária dentro da tabela Recipe? USA dois underlines ( __id) e passa o id Queria pegar um campo da category que é uma forein key dentro de recipe
+    ).order_by('-id').first()  # Tem que retornar uma única receita
+    
+    
+    
     return render(request, 'recipes/pages/recipe-view.html', status=200, context={
-        'recipe': make_recipe(),
+        'recipe': recipe,  # TEM QUE COLOCAR ISSO, se nao crasha ao clicar na receita
         'is_detail_page': True,
     })

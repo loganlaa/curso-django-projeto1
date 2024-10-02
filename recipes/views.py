@@ -1,4 +1,4 @@
-from django.shortcuts import get_list_or_404, render  #lë um arquivo e renderiza ele
+from django.shortcuts import get_list_or_404, get_object_or_404, render  #lë um arquivo e renderiza ele
 from utils.recipes.factory import make_recipe
 from recipes.models import Recipe
 
@@ -30,14 +30,7 @@ def category(request, category_id):
 
 
 def recipe(request, id):
-
-    recipe = Recipe.objects.filter(
-        pk=id,  # pk é a primary key de recipe e o id é gerado automaticamente no django
-        is_published=True,
-        # Como acesso id da categoria sendo que id é uma Chave Secundária dentro da tabela Recipe? USA dois underlines ( __id) e passa o id Queria pegar um campo da category que é uma forein key dentro de recipe
-    ).order_by('-id').first()  # Tem que retornar uma única receita
-    
-    
+    recipe = get_object_or_404(Recipe, pk=id, is_published=True)
     
     return render(request, 'recipes/pages/recipe-view.html', status=200, context={
         'recipe': recipe,  # TEM QUE COLOCAR ISSO, se nao crasha ao clicar na receita

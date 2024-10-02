@@ -13,7 +13,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=65)
 
-    def __str__(self):  # Método chamado quando você tenta chamar o model como uma string, já retorna o nome dela
+    def __str__(self):  # Metodo chamado quando você tenta chamar o model como uma string, já retorna o nome dela
         # automático. Aí não precisa ficar aparecendo object 1
         return self.name
 
